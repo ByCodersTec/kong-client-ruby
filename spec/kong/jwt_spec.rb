@@ -43,12 +43,15 @@ describe Kong::JWT do
   end
 
   # describe '#delete' do
-    # it '' do
-    #   expect(Kong::JWT.create({client_id: 'sdfsdfsd'})).to be_truthy
-    # end
+  #   it '' do
+  #     attributes = { 'consumer_id' => ':consumer_id', 'id' => ':id' }
 
-    # it '' do
-    #   expect(Kong::JWT.delete({ consumer_id: 'lsdnfsldjknf', id: 'abcdefghij' })).to be_truthy
-    # end
+  #     expect(Kong::Client.instance)
+  #         .to receive(:delete).with('/consumers/:consumer_id/jwt/:id')
+  #               .and_return(attributes)
+
+  #     subject = described_class.new(attributes)
+  #     subject.create
+  #   end
   # end
 end
