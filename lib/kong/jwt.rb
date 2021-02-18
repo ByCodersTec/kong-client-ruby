@@ -15,8 +15,8 @@ module Kong
     end
 
     def delete
-      except_consumer_id_hash = attributes.reject { |k, v| k == 'consumer_id' }
-      except_id_hash = attributes.reject { |k, v| k == 'id' }
+      except_consumer_id_hash = attributes['consumer_id']
+      except_id_hash = attributes['id']
       # id = attributes["id"]
       response = client.delete("#{@api_end_point}/#{except_id_hash["id"]}", except_consumer_id_hash)
 
