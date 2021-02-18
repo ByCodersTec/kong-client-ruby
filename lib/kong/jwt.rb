@@ -14,5 +14,12 @@ module Kong
       self
     end
 
+    def delete
+      except_consumer_id_hash = attributes.reject { |k, v| k == 'consumer_id' || k == 'id' }
+      response = client.delete(@api_end_point, except_consumer_id_hash)
+
+      init_attributes(response)
+      self
+    end
   end
 end
