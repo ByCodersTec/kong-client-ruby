@@ -1,5 +1,5 @@
 require_relative "../spec_helper"
-require 'pry-byebug'
+# require 'pry-byebug'
 
 describe Kong::JWT do
   let(:valid_attribute_names) do
@@ -41,4 +41,10 @@ describe Kong::JWT do
       end
     end
   end
+
+  # describe '#delete' do
+  #   it '' do
+  #     expect(Kong::JWT.delete).to be_truthy
+  #   end
+  # end
 end
