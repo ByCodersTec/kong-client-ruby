@@ -1,5 +1,5 @@
 require_relative "../spec_helper"
-# require 'pry-byebug'
+require 'pry-byebug'
 
 describe Kong::JWT do
   let(:valid_attribute_names) do
@@ -43,8 +43,12 @@ describe Kong::JWT do
   end
 
   # describe '#delete' do
-  #   it '' do
-  #     expect(Kong::JWT.delete).to be_truthy
-  #   end
+    # it '' do
+    #   expect(Kong::JWT.create({client_id: 'sdfsdfsd'})).to be_truthy
+    # end
+
+    # it '' do
+    #   expect(Kong::JWT.delete({ consumer_id: 'lsdnfsldjknf', id: 'abcdefghij' })).to be_truthy
+    # end
   # end
 end

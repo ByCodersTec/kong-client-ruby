@@ -15,8 +15,9 @@ module Kong
     end
 
     def delete
-      except_consumer_id_hash = attributes.reject { |k, v| k == 'consumer_id' || k == 'id' }
-      response = client.delete(@api_end_point, except_consumer_id_hash)
+      except_consumer_id_hash = attributes.reject { |k, v| k == 'consumer_id' && k == 'id' }
+      id = attributes.id
+      response = client.delete("#{@api_end_point}/#{id}", except_consumer_id_hash)
 
       init_attributes(response)
       self

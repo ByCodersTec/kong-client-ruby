@@ -23,6 +23,10 @@ module Kong
         self.new(attributes).create
       end
 
+      def delete(attributes = {})
+        self.new(attributes).delete
+      end
+
       # Find resource
       # @param [String] id
       def find(id)
