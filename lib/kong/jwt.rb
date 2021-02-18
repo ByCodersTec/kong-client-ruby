@@ -16,7 +16,7 @@ module Kong
 
     def delete
       except_id_hash = attributes['id']
-      response = client.delete("#{@api_end_point}/#{except_id_hash}")
+      response = client.delete("#{@api_end_point}#{except_id_hash}")
 
       init_attributes(response)
       self

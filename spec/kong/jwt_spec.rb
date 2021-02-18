@@ -1,5 +1,5 @@
 require_relative "../spec_helper"
-require 'pry-byebug'
+# require 'pry-byebug'
 
 describe Kong::JWT do
   let(:valid_attribute_names) do
