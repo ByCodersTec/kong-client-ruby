@@ -152,7 +152,9 @@ module Kong
           query: encode_params(params)
       }
       response = http_client.delete(request_options)
-      unless response.status == 204
+      if response.status == 204
+        parse_response(response)
+      else
         handle_error_response(response)
       end
     end
