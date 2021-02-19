@@ -196,8 +196,10 @@ module Kong
     def parse_response(response)
       if response.headers['Content-Type'].include?('application/json')
         parse_json(response.body)
-      else
+      elsif response.body.present?
         response.body
+      else
+        response.merge({ message: 'Delete ok' })
       end
     end
 
