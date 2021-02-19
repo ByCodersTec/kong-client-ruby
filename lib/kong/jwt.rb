@@ -15,7 +15,11 @@ module Kong
     end
 
     def delete
-      super
+      headers = { 'Content-Type' => 'application/json' }
+      except_consumer_id_hash = attributes.reject { |k, v| k == 'consumer_id' || k == 'id' }
+      resp = client.delete("#{@api_end_point}:id", except_consumer_id_hash, nil, headers)
+
+      self
     end
 
   end
