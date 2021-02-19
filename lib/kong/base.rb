@@ -159,8 +159,12 @@ module Kong
 
     def init_attributes(attributes)
       @attributes = {}
-      attributes.each do |key, value|
-        @attributes[key.to_s] = value
+      if attributes.present?
+        attributes.each do |key, value|
+          @attributes[key.to_s] = value
+        end
+      else
+        @attributes = { message: 'Delete ok' }
       end
       use_consumer_end_point if respond_to?(:use_consumer_end_point)
       use_api_end_point if respond_to?(:use_api_end_point)
