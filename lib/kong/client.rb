@@ -199,7 +199,7 @@ module Kong
       elsif response.body.present?
         response.body
       else
-        response.merge({ message: 'Delete ok' })
+        response
       end
     end
 
