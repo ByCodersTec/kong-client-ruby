@@ -194,7 +194,7 @@ module Kong
     # @param [HTTP::Message]
     # @return [Object]
     def parse_response(response)
-      if response.headers['Content-Type'].include?('application/json')
+      if response.headers['Content-Type']&.include?('application/json')
         parse_json(response.body)
       elsif response.body.present?
         response.body
