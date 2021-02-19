@@ -41,4 +41,20 @@ describe Kong::JWT do
       end
     end
   end
+
+  describe '#delete' do
+    context 'using Kong ^1.0 schema reject consumer_id and id' do
+      it 'should not send consumer_id and id in request_payload' do
+        attributes = { 'id' => ':id', 'consumer_id' => ':consumer_id', 'key' => ':key', 'secret' =>  ':secret' }
+
+        expect(Kong::Client.instance)
+          .to receive(:delete)
+                .with('/consumers/:consumer_id/jwt/:id')
+                .and_return(nil)
+
+        subject = described_class.new(attributes)
+        subject.delete
+      end
+    end
+  end
 end

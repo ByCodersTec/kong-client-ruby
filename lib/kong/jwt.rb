@@ -14,5 +14,9 @@ module Kong
       self
     end
 
+    def delete
+      super
+    end
+
   end
 end
