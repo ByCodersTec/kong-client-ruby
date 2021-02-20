@@ -15,7 +15,7 @@ module Kong
     end
 
     def delete
-      client.delete("#{@api_end_point}#{self.id}") rescue nil
+      client.delete("#{self.api_end_point}#{self.id}") rescue nil
     end
 
   end
