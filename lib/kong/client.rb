@@ -54,7 +54,7 @@ module Kong
     # @return [Hash]
     def get(path, params = nil, headers = {})
       response = http_client.get(
-        path: path,
+        path: new_path(path),
         query: encode_params(params),
         headers: request_headers(headers)
       )
@@ -75,11 +75,14 @@ module Kong
     def post(path, obj, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
       }
+      p ''
+      p request_options
+      p ''
       response = http_client.post(request_options)
       if [200, 201].include?(response.status)
         parse_response(response)
@@ -98,7 +101,7 @@ module Kong
     def patch(path, obj, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
@@ -122,7 +125,7 @@ module Kong
     def put(path, obj, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
@@ -146,7 +149,7 @@ module Kong
     def delete(path, body = nil, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(body, request_headers['Content-Type']),
           query: encode_params(params)
@@ -227,6 +230,14 @@ module Kong
         message = 'Not found'
       end
       raise Error.new(response.status, message)
+    end
+
+    def new_path(path)
+      prefix = Kong::Client.http_client.params[:path] ? 
+                Kong::Client.http_client.params[:path] :
+                ''
+      
+      prefix + path
     end
   end
 end
