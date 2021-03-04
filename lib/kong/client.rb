@@ -26,7 +26,6 @@ module Kong
 
     def self.api_url
       @api_url || ENV['KONG_URI'] || 'http://localhost:8001'
-      'http://52.207.163.55:8000/admin-api/'
     end
 
     def self.api_url=(url)
