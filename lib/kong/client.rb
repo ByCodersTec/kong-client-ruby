@@ -32,6 +32,8 @@ module Kong
     def self.api_url=(url)
       @api_url = url
       @http_client = Excon.new(self.api_url, omit_default_port: true)
+      p 'here'
+      p @http_client
     end
 
     def http_client
@@ -86,7 +88,9 @@ module Kong
       response = http_client.post(request_options)
       p ''
       p http_client
+      p ''
       p request_options
+      p ''
       p response
       p ''
       if [200, 201].include?(response.status)
