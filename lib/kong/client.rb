@@ -54,7 +54,7 @@ module Kong
     # @return [Hash]
     def get(path, params = nil, headers = {})
       response = http_client.get(
-        path: path,
+        path: new_path(path),
         query: encode_params(params),
         headers: request_headers(headers)
       )
