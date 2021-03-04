@@ -16,14 +16,17 @@ module Kong
     # Initialize api client
     #
     def initialize
+      p api_url
       Excon.defaults[:ssl_verify_peer] = false if ignore_ssl_errors?
       @api_url = api_url
+      p @api_url
       self.class.http_client = Excon.new(@api_url, omit_default_port: true)
       @default_headers = { 'Accept' => 'application/json' }
     end
 
     def self.api_url
       @api_url || ENV['KONG_URI'] || 'http://localhost:8001'
+      'http://52.207.163.55:8000/admin-api/'
     end
 
     def self.api_url=(url)
