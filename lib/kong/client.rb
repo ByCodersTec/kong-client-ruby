@@ -75,13 +75,13 @@ module Kong
     def post(path, obj, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
       }
       p ''
-      p @path
+      p request_options
       p ''
       response = http_client.post(request_options)
       if [200, 201].include?(response.status)
@@ -230,6 +230,14 @@ module Kong
         message = 'Not found'
       end
       raise Error.new(response.status, message)
+    end
+
+    def new_path(path)
+      prefix = Kong::Client.http_client.params[:path] ? 
+                Kong::Client.http_client.params[:path] :
+                ''
+      
+      prefix + path
     end
   end
 end
