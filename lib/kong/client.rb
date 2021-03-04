@@ -16,10 +16,8 @@ module Kong
     # Initialize api client
     #
     def initialize
-      p api_url
       Excon.defaults[:ssl_verify_peer] = false if ignore_ssl_errors?
       @api_url = api_url
-      p @api_url
       self.class.http_client = Excon.new(@api_url, omit_default_port: true)
       @default_headers = { 'Accept' => 'application/json' }
     end
@@ -31,8 +29,6 @@ module Kong
     def self.api_url=(url)
       @api_url = url
       @http_client = Excon.new(self.api_url, omit_default_port: true)
-      p 'here'
-      p @http_client
     end
 
     def http_client
@@ -43,13 +39,10 @@ module Kong
     #
     # @return [String]
     def api_url
-      p 'here0'
-      p self.class.api_url
+      self.class.api_url
     end
 
     def api_url=(url)
-      p 'here1'
-      p url
       @api_url = url
     end
 
@@ -88,13 +81,6 @@ module Kong
           query: encode_params(params)
       }
       response = http_client.post(request_options)
-      p ''
-      p http_client
-      p ''
-      p request_options
-      p ''
-      p response
-      p ''
       if [200, 201].include?(response.status)
         parse_response(response)
       else
