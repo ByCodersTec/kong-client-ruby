@@ -66,7 +66,7 @@ module Kong
       end
 
       base.send(:define_method, :init_api_end_point) do
-        @api_end_point = base::API_END_POINT
+        @api_end_point = "/admin-api#{base::API_END_POINT}"
       end
     end
 
