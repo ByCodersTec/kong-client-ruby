@@ -44,10 +44,13 @@ module Kong
     #
     # @return [String]
     def api_url
-      self.class.api_url
+      p 'here0'
+      p self.class.api_url
     end
 
     def api_url=(url)
+      p 'here1'
+      p url
       @api_url = url
     end
 
