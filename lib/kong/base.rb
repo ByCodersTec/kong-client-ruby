@@ -69,7 +69,7 @@ module Kong
         path =  Kong::Client.http_client.params[:path] ?
                   Kong::Client.http_client.params[:path] :
                   ''
-        @api_end_point = "#{path}#{base::API_END_POINT}"
+        p @api_end_point = "#{path}#{base::API_END_POINT}"
       end
     end
 
