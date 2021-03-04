@@ -66,8 +66,7 @@ module Kong
       end
 
       base.send(:define_method, :init_api_end_point) do
-        p define_method
-        p init_api_end_point
+        p Excon.count
         p base
         @api_end_point = "/admin-api#{base::API_END_POINT}"
       end
