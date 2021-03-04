@@ -81,7 +81,7 @@ module Kong
           query: encode_params(params)
       }
       p ''
-      p request_options
+      p @path
       p ''
       response = http_client.post(request_options)
       if [200, 201].include?(response.status)

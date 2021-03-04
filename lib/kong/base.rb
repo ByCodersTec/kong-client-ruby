@@ -66,7 +66,7 @@ module Kong
       end
 
       base.send(:define_method, :init_api_end_point) do
-        path =  Kong::Client.http_client.params[:path] ?
+        @path =  Kong::Client.http_client.params[:path] ?
                   Kong::Client.http_client.params[:path] :
                   ''
         p @api_end_point = base::API_END_POINT
