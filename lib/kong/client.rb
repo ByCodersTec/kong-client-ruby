@@ -80,6 +80,9 @@ module Kong
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
       }
+      p ''
+      p request_options
+      p ''
       response = http_client.post(request_options)
       if [200, 201].include?(response.status)
         parse_response(response)
