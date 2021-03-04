@@ -75,7 +75,7 @@ module Kong
     def post(path, obj, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: new_path(path),
+          path: path,
           headers: request_headers,
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
