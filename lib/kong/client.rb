@@ -159,7 +159,7 @@ module Kong
       p ''
       p 'delete'
       p path
-      p response
+      p request_options
       p ''
       response = http_client.delete(request_options)
       unless response.status == 204
