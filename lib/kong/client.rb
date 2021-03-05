@@ -58,6 +58,11 @@ module Kong
         query: encode_params(params),
         headers: request_headers(headers)
       )
+      p ''
+      p 'get'
+      p path
+      p response
+      p ''
       if response.status == 200
         parse_response(response)
       else
@@ -80,9 +85,6 @@ module Kong
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
       }
-      p ''
-      p request_options
-      p ''
       response = http_client.post(request_options)
       if [200, 201].include?(response.status)
         parse_response(response)
@@ -101,7 +103,7 @@ module Kong
     def patch(path, obj, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
@@ -125,7 +127,7 @@ module Kong
     def put(path, obj, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(obj, request_headers['Content-Type']),
           query: encode_params(params)
@@ -149,11 +151,16 @@ module Kong
     def delete(path, body = nil, params = {}, headers = {})
       request_headers = request_headers(headers)
       request_options = {
-          path: path,
+          path: new_path(path),
           headers: request_headers,
           body: encode_body(body, request_headers['Content-Type']),
           query: encode_params(params)
       }
+      p ''
+      p 'delete'
+      p path
+      p response
+      p ''
       response = http_client.delete(request_options)
       unless response.status == 204
         handle_error_response(response)
