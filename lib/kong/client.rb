@@ -244,7 +244,7 @@ module Kong
                 Kong::Client.http_client.params[:path] :
                 ''
       
-      path.include(prefix) ? path : prefix + path
+      path.include?(prefix) ? path : prefix + path
     end
   end
 end
