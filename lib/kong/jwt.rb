@@ -14,5 +14,12 @@ module Kong
       self
     end
 
+    def new_path(path)
+      prefix = Kong::Client.http_client.params[:path] ? 
+                Kong::Client.http_client.params[:path] :
+                ''
+      
+      prefix + path
+    end
   end
 end
