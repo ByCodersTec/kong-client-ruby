@@ -58,11 +58,6 @@ module Kong
         query: encode_params(params),
         headers: request_headers(headers)
       )
-      p ''
-      p 'get'
-      p path
-      p response
-      p ''
       if response.status == 200
         parse_response(response)
       else
@@ -162,6 +157,7 @@ module Kong
       p request_options
       p ''
       response = http_client.delete(request_options)
+      p response
       unless response.status == 204
         handle_error_response(response)
       end
