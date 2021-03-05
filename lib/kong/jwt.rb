@@ -8,6 +8,7 @@ module Kong
     def create
       headers = { 'Content-Type' => 'application/json' }
       except_consumer_id_hash = attributes.reject { |k, v| k == 'consumer_id' }
+      @api_end_point = new_path(@api_end_point)
       response = client.post(@api_end_point, except_consumer_id_hash, nil, headers)
 
       init_attributes(response)
